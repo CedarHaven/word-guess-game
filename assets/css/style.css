@@ -39,16 +39,23 @@ h3{
     margin-left: 35%;
     margin-bottom: 5%;
     font-family: "Lucida Sans";
+    font-size: 20px;
     color: rgb(158, 158, 158);
+    background:rgb(45, 51, 58);
     text-align: center;
     border: solid 2px white;
 }
 
-#word-game{
-    padding: 15px 0px 15px 0px;
-    font-size: 20px;
+#guesses{
+    padding: 0px 0px 15px 0px;
 }
 
-#guesses{
-    font-size: 15px;
+#current{
+    padding: 15px 0px 15px 0px;
+    border-top: solid 2px white;
+    margin-top: 15px;
+}
+
+#word-game{
+    padding: 15px 0px 15px 0px;
 }

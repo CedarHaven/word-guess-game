@@ -54,7 +54,7 @@ $(document).ready(function(){
 
                     // it also appends the guess to the div made in the HTML for keeping list of what you've guessed.
                     var insertGuess = document.createElement("span");
-                    insertGuess.textContent = char;
+                    insertGuess.textContent = char+" ";
                     userGuessDiv.appendChild(insertGuess);
                         
                     // if your guess is included in the word, then it displays the letter in all the places it's found. if it's NOT in the word, you lose a guess.
@@ -84,7 +84,7 @@ $(document).ready(function(){
     
             // in here I called back up to display so that whether you won or lost, the game would play again. I went with <= 0 because I was having a bug for a bit where sometimes guesses would increment to -1, and I couldn't figure out why, so I just...did this. just in case.
             // I did test this with both a win and a loss. it seemed to work fine.
-            // for some reason, the display doesn't update to show your guesses as 0 when you lose, or the full word you entered when you win, and I can't figure out why.
+            // for some reason, the display doesn't update to show your guesses as 0 when you lose, or the full word you entered when you win, or update the guessed letters for either, and I can't figure out why. I've tried moving the functions that update those things to be in the if statement here and it still doesn't work quite right.
             if(guesses <= 0) {
                 losses++;
                 displayScores(wins, losses);
