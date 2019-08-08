@@ -3,12 +3,24 @@
     <head>
         <meta charset="UTF-8">
         <title>Word Guessing Game</title>
+        <link href="https://fonts.googleapis.com/css?family=Skranji:700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     </head>
 
     <body>
         <h1>HANGMAN</h1>
         <h2>Prehistoric Style! (It's Mostly Dinosaurs.)</h2>
+        <h3>Hit any key to start the game! Please be forewarned that numbers, symbols, and things like the enter key will count as incorrect guesses.</h3>
 
-        <div id="word-game"></div>
+        <div id="box">
+            <div id="wins"></div>
+            <div id="losses"></div>
+            <div id="lives"></div>
+            <div id="word-game"></div>
+            <div id="guesses"></div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="assets/javascript/game.js"></script>
     </body>
 </html>
