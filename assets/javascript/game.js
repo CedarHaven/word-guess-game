@@ -48,8 +48,6 @@ $(document).ready(function(){
             document.onkeyup = function(event){
                 var char = event.key.toLowerCase();
     
-                console.log(char);
-    
                 // this checks if you've already guessed a letter or not; if it doesn't find the letter you enter in the array, it adds it to the array of guessed letters and carries on to see if the letter is in the word being guessed or not.
                 if(!guessedLetters.includes(char)) {
                     guessedLetters.push(char);
@@ -78,7 +76,7 @@ $(document).ready(function(){
                         game();
                     }
                 }
-                else{
+                else {
                     // this is here so that in case you forget what you've already guessed and guess a letter you've already tried, game will keep going.
                     game();
                 }
@@ -86,6 +84,7 @@ $(document).ready(function(){
     
             // in here I called back up to display so that whether you won or lost, the game would play again. I went with <= 0 because I was having a bug for a bit where sometimes guesses would increment to -1, and I couldn't figure out why, so I just...did this. just in case.
             // I did test this with both a win and a loss. it seemed to work fine.
+            // for some reason, the display doesn't update to show your guesses as 0 when you lose, or the full word you entered when you win, and I can't figure out why.
             if(guesses <= 0) {
                 losses++;
                 displayScores(wins, losses);
@@ -95,7 +94,6 @@ $(document).ready(function(){
             else if(displayString == secretString) {
                 wins++;
                 displayScores(wins, losses);
-                // for some reason, having the alert prevents the word from displaying fully on the screen, and I'm not sure how to fix that, but I really want the alert so that you actually, you know, know you won and can see the word before display() gets called again.
                 alert("You won! The word was "+secretString+". Congratulations on correctly guessing it!");
                 display();
             }
