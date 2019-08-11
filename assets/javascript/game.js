@@ -11,11 +11,11 @@ var losses = 0;
 // this forever causes the array to start with an empty space when it cycles through, but I'm not sure how else to make it work.
 var guessedLetters = [""];
 
-// declared secretString and displayString. not sure I 100% had to do this here, but it's 1am on Thursday and I still have CSS and a readme to do. I'll try to come back to this later to test.
+// declared secretString and displayString, respectively the randomly selected word (secretString) and the dashes/word to be filled in as correct guesses are made (displayString)
 var secretString = "";
 var displayString = "";
 
-// this is so we'll only start when the HTML is ready to go, because...safety! I guess!
+// this is so we'll only start when the HTML is ready to go, because otherwise I was having some loading problems.
 $(document).ready(function(){
 
     // the only way I could get the game to be consistently replayable was to make a display function that printed out things like the dashes for the string you'd be guessing and reset the 'guessedLetters' array to "" and 'guesses' to 6, then have the rest of the game in a function INSIDE display().
