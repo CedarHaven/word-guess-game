@@ -19,7 +19,7 @@ var displayString = "";
 $(document).ready(function(){
 
     // the only way I could get the game to be consistently replayable was to make a display function that printed out things like the dashes for the string you'd be guessing and reset the 'guessedLetters' array to "" and 'guesses' to 6, then have the rest of the game in a function INSIDE display().
-    document.onkeyup = function() {display()};
+    display();
 
     function display(){
         // here we reset guessedLetters to empty, set the secretString to a new word, set helper to be the same as secretString, and populate displayString.
@@ -42,7 +42,7 @@ $(document).ready(function(){
         var userGuessDiv = document.getElementById("guesses");
         userGuessDiv.innerHTML = "";
 
-        game();
+        document.onkeyup = function() {game()};
 
         function game(){
             document.onkeyup = function(event){
