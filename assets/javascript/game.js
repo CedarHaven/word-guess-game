@@ -9,7 +9,7 @@ var losses = 0;
 
 // an array. every time the user guesses a letter, I will check if the guess is already in the array. if it's not, it will be added to the array and then I'll check if your guess is in the string (and if it is, the word fills in on screen, and if it's not, you lose a guess). if it is, then I skip right over checking for the letter in the word and you don't lose a guess.
 // this forever causes the array to start with an empty space when it cycles through, but I'm not sure how else to make it work.
-var guessedLetters = [""];
+var guessedLetters = [];
 
 // declared secretString and displayString, respectively the randomly selected word (secretString) and the dashes/word to be filled in as correct guesses are made (displayString)
 var secretString = "";
@@ -23,7 +23,7 @@ $(document).ready(function(){
 
     function display(){
         // here we reset guessedLetters to empty, set the secretString to a new word, set helper to be the same as secretString, and populate displayString.
-        guessedLetters = [""];
+        guessedLetters = [];
         secretString = words[Math.floor(Math.random() * words.length)];
         var helper = secretString;
         displayString = populate(secretString.length);
@@ -42,45 +42,53 @@ $(document).ready(function(){
         var userGuessDiv = document.getElementById("guesses");
         userGuessDiv.innerHTML = "";
 
-        document.onkeyup = function() {game()};
+        game();
 
         function game(){
             document.onkeyup = function(event){
                 var char = event.key.toLowerCase();
-    
-                // this checks if you've already guessed a letter or not; if it doesn't find the letter you enter in the array, it adds it to the array of guessed letters and carries on to see if the letter is in the word being guessed or not.
-                if(!guessedLetters.includes(char)) {
-                    guessedLetters.push(char);
 
-                    // it also appends the guess to the div made in the HTML for keeping list of what you've guessed.
-                    var insertGuess = document.createElement("span");
-                    insertGuess.textContent = char+" ";
-                    userGuessDiv.appendChild(insertGuess);
-                        
-                    // if your guess is included in the word, then it displays the letter in all the places it's found. if it's NOT in the word, you lose a guess.
-                    if(secretString.includes(char)) {
-                        while(helper.includes(char)){
-                            var index = helper.indexOf(char);
-                            helper = helper.replace(char, "-");
-                            displayString = replaceAtChar(displayString, index, char);
+                // I included a thing to check if your input is an actual letter.
+                if(alphabetical(char) && char != "enter" && char != "shift" && char != "capslock" &&char != "control" && char != "enter") {
+                    console.log(char);
+                    // this checks if you've already guessed a letter or not; if it doesn't find the letter you enter in the array, it adds it to the array of guessed letters and carries on to see if the letter is in the word being guessed or not.
+                    if(!guessedLetters.includes(char)) {
+                        guessedLetters.push(char);
 
-                            // calling game again inside of it was the only way I could get it to repeatedly let people enter letters. while loops did not work for this. at all.
+                        // it also appends the guess to the div made in the HTML for keeping list of what you've guessed.
+                        var insertGuess = document.createElement("span");
+                        insertGuess.textContent = char+" ";
+                        userGuessDiv.appendChild(insertGuess);
+                            
+                        // if your guess is included in the word, then it displays the letter in all the places it's found. if it's NOT in the word, you lose a guess.
+                        if(secretString.includes(char)) {
+                            while(helper.includes(char)){
+                                var index = helper.indexOf(char);
+                                helper = helper.replace(char, "-");
+                                displayString = replaceAtChar(displayString, index, char);
+
+                                // calling game again inside of it was the only way I could get it to repeatedly let people enter letters. while loops did not work for this. at all.
+                                game();
+                            }
+                                
+                            displayUnknownWord(displayString);
+                        }
+                        else {
+                            guesses--;
+                            displayGuesses(guesses);
                             game();
                         }
-                            
-                        displayUnknownWord(displayString);
                     }
                     else {
-                        guesses--;
-                        displayGuesses(guesses);
+                        // this is here so that in case you forget what you've already guessed and guess a letter you've already tried, game will keep going.
                         game();
                     }
                 }
-                else {
-                    // this is here so that in case you forget what you've already guessed and guess a letter you've already tried, game will keep going.
-                    game();
-                }
+            else{
+                alert("That's not a valid input!");
+                game();
             }
+        }
     
             // in here I called back up to display so that whether you won or lost, the game would play again. I went with <= 0 because I was having a bug for a bit where sometimes guesses would increment to -1, and I couldn't figure out why, so I just...did this. just in case.
             // I did test this with both a win and a loss. it seemed to work fine.
@@ -129,4 +137,14 @@ function replaceAtChar(inputString, indexToReplace, charToReplace) {
     var endString   = inputString.substring(indexToReplace + 1, inputString.length);
     
     return startString + charToReplace + endString;
+}
+
+function alphabetical(inputChar) {
+    var letters = /^[a-zA-Z]/;
+    if(inputChar.match(letters)) {
+        return true;
+    }
+    else {
+        return false; 
+    }
 }

@@ -15,3 +15,4 @@ Alternately, the project is hosted on Git Pages at https://cedarhaven.github.io/
 CSS reset from here: https://meyerweb.com/eric/tools/css/reset/
 Burlesque font (used for the first header) originally from here: https://www.1001fonts.com/burlesque-font.html; inclusion of the font was made possible by the Webfont Generator here: https://www.fontsquirrel.com/tools/webfont-generator
 Skranji font (used for the second header) from Google Fonts.
+Code for alphabetical() function found here: https://www.w3resource.com/javascript/form/letters-numbers-field.php
