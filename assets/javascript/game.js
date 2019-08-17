@@ -42,7 +42,7 @@ $(document).ready(function(){
         var userGuessDiv = document.getElementById("guesses");
         userGuessDiv.innerHTML = "";
 
-        game();
+        document.onkeyup = function(){game()};
 
         function game(){
             document.onkeyup = function(event){
