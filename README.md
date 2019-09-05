@@ -6,10 +6,10 @@ If you win, you get an alert telling you that you've won and also what the word 
 ## Installation
 
 You can use Git Bash to clone the repository onto your computer by entering the following in Git Bash:
-```git clone https://github.com/CedarHaven/word-guess-game.git```
+```git clone https://github.com/juniperhaven/word-guess-game.git```
 After doing so, open the folder you've downloaded, right click 'index.html' and open in your browser of choice.
 
-Alternately, the project is hosted on Git Pages at https://cedarhaven.github.io/word-guess-game/
+Alternately, the project is hosted on Git Pages at https://juniperhaven.github.io/word-guess-game/
 
 ## Acknowledgements
 CSS reset from here: https://meyerweb.com/eric/tools/css/reset/
